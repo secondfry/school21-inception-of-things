@@ -4,10 +4,10 @@ GEM
     prettier (2.0.0)
 
 PLATFORMS
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   prettier
 
 BUNDLED WITH
-   2.2.3
+   1.17.2
