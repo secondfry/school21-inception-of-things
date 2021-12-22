@@ -6,18 +6,27 @@ Vagrant.configure('2') do |config|
   config.vm.box = 'centos/stream8'
   config.vm.box_version = '20210210.0'
 
-  config.vm.define 'server' do |server|
+  config.vm.define :server do |server|
     server.vm.hostname = 'oadhesivS'
   end
-  config.vm.define 'worker' do |worker|
+  config.vm.define :worker do |worker|
     worker.vm.hostname = 'oadhesivSW'
+  end
+
+  config.vm.provider :libvirt do |lv|
+    lv.smp = 1
+    lv.memory = "512M"
+    lv.qemu_command = "qemu-system-x86_64"
+    lv.machine = "q35"
+    lv.cpu = "max"
+    # lv.display = "cocoa,gl=es"
   end
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  config.vm.provider "virtualbox" do |vb|
+  config.vm.provider :virtualbox do |vb|
     vb.cpus = 1
     vb.memory = 512
   end
